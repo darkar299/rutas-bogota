@@ -92,9 +92,9 @@ body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-ser
 .modes button span{font-size:17px;line-height:1}.modes button small{font-size:11px;font-weight:650}.modes button:hover{border-color:#b8d6d7;background:#f6fbfb}.modes button.on{background:#e8f5f4;color:var(--brand-dark);border-color:#9ccfce;box-shadow:inset 0 0 0 1px rgba(8,127,140,.08)}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}.chips:empty{display:none}.chips span{background:#f5f8f8!important;border:1px solid #e7eeee;border-radius:99px!important;color:#536a72;padding:6px 10px!important;font-size:11px!important}
 .stopshead{display:flex;align-items:center;justify-content:space-between;margin:0 1px 6px}.textbtn{border:0;background:transparent;color:#89979c;font-size:11px;padding:5px 2px;cursor:pointer}.textbtn:hover{color:#bb4b4b}
-#stops{list-style:none;padding:0;margin:0 0 13px;display:grid;gap:6px}#stops:empty{display:none}
-#stops li{display:flex;align-items:center;gap:8px;padding:8px 9px;background:#f7f9f9;border:1px solid #eef2f3;border-radius:13px;margin:0;font-size:12px;color:#354b55;min-height:42px}
-#stops li .n{width:23px;height:23px;background:#fff;color:var(--brand);border:1px solid #c9e2e1;font-size:11px;font-weight:750;box-shadow:none}
+#stops{list-style:none;padding:0;margin:0 0 13px;display:grid;grid-template-columns:minmax(0,1fr);gap:6px}#stops:empty{display:none}
+#stops li{min-width:0;display:flex;align-items:center;gap:8px;padding:8px 9px;background:#f7f9f9;border:1px solid #eef2f3;border-radius:13px;margin:0;font-size:12px;color:#354b55;min-height:42px}
+#stops li .t{min-width:0}#stops li .n{width:23px;height:23px;background:#fff;color:var(--brand);border:1px solid #c9e2e1;font-size:11px;font-weight:750;box-shadow:none}
 #stops li .h{font-size:14px;color:#9aa8ad}.ib{color:#7f9097;font-size:14px}.ib:hover{color:var(--brand)}
 .actionrow{display:grid;grid-template-columns:1.2fr 1fr;gap:8px;margin-top:8px}
 .btn{min-height:44px;padding:10px 13px;border:0;border-radius:13px;font-size:13px;font-weight:700;cursor:pointer;transition:transform .12s,background .15s,box-shadow .15s}.btn:active{transform:scale(.98)}
