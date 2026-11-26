@@ -16,7 +16,7 @@
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;color:#1f2937}
 #map{position:fixed;inset:0}
 #panel{position:fixed;z-index:1000;left:12px;top:12px;width:360px;max-width:calc(100vw - 24px);max-height:calc(100vh - 24px);overflow:auto;background:#fff;border-radius:16px;box-shadow:0 6px 24px #0003;padding:12px}
-#hd{display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:8px}#hd h1{margin:0}#tg{border:0;background:#e5e7eb;border-radius:8px;padding:8px 12px;font-size:14px}
+#hd{display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:8px}#hd h1{margin:0}#version{font-size:11px;color:#64748b;background:#f1f5f9;border:1px solid #e2e8f0;padding:3px 7px;border-radius:999px;white-space:nowrap}#tg{border:0;background:#e5e7eb;border-radius:8px;padding:8px 12px;font-size:14px}
 #panel.min{width:auto;max-height:none;overflow:visible;padding:8px 10px}#panel.min #body{display:none}#panel.min #hd{margin:0;gap:12px}
 @media(max-width:600px){#panel{left:8px;right:8px;top:auto;bottom:8px;width:auto;max-width:none;max-height:45vh}#panel.min{left:auto;right:8px;width:auto}}
 h1{font-size:18px;margin:0 0 10px}
@@ -69,7 +69,7 @@ details{margin-top:8px;font-size:13px}summary{cursor:pointer;font-weight:600}
 </style></head><body>
 <div id="map"></div>
 <div id="panel">
-<div id="hd"><h1>🧭 Rutas</h1><button id="tg">Ocultar ▾</button></div>
+<div id="hd"><div style="display:flex;align-items:center;gap:8px"><h1>🧭 Rutas</h1><span id="version" title="Versión instalada">v1.1.0</span></div><button id="tg">Ocultar ▾</button></div>
 <div id="body">
 <input id="q" placeholder="Busca un lugar o dirección…" autocomplete="off">
 <ul id="sug"></ul>
@@ -201,12 +201,21 @@ function panPointClear(latlng){
 }
 let currentMarker=null;
 $('ctr').onclick=()=>{
- const onFix=(lat,lng)=>{const ll=L.latLng(lat,lng);if(currentMarker)currentMarker.remove();currentMarker=L.circleMarker(ll,{radius:8,color:'#fff',weight:3,fillColor:'#2563eb',fillOpacity:1}).addTo(map);focusPoint(lat,lng,16)};
- const fallback=()=>{if(routeStops.length){fitBoundsClear(line?line.getBounds():L.latLngBounds(routeStops.map(p=>[p.lat,p.lng])));return}
-  if(stops.length){fitBoundsClear(L.latLngBounds(stops.map(p=>[p.lat,p.lng])));return}
-  alert('No pude acceder al GPS. Activa el permiso de ubicación o añade un punto tocando el mapa.')};
- if(!navigator.geolocation){fallback();return}
- navigator.geolocation.getCurrentPosition(p=>onFix(p.coords.latitude,p.coords.longitude),fallback,{enableHighAccuracy:true,timeout:12000,maximumAge:60000})
+ // When the user has placed points, this control means "show my route/points"—never jump to GPS.
+ const points=(routeStops.length?routeStops:stops).filter(p=>Number.isFinite(Number(p.lat))&&Number.isFinite(Number(p.lng)));
+ if(points.length){
+  const bounds=L.latLngBounds(points.map(p=>[Number(p.lat),Number(p.lng)]));
+  if(line&&line.getLayers().length)bounds.extend(line.getBounds());
+  if(transitLayer&&transitLayer.getLayers().length)bounds.extend(transitLayer.getBounds());
+  fitBoundsClear(bounds);return
+ }
+ if(currentMarker){const ll=currentMarker.getLatLng();focusPoint(ll.lat,ll.lng,16);return}
+ if(!navigator.geolocation){alert('Añade un punto para encuadrarlo en el mapa.');return}
+ navigator.geolocation.getCurrentPosition(p=>{
+  const ll=L.latLng(p.coords.latitude,p.coords.longitude);
+  currentMarker=L.circleMarker(ll,{radius:8,color:'#fff',weight:3,fillColor:'#2563eb',fillOpacity:1}).addTo(map);
+  focusPoint(ll.lat,ll.lng,16)
+ },()=>alert('No pude acceder al GPS. Añade un punto para centrarlo en el mapa.'),{enableHighAccuracy:true,timeout:12000,maximumAge:60000})
 };
 $('loc').onclick=()=>{
  const put=(lat,lng,t)=>{stops.unshift({lat,lng,name:t});clearRoute();render();focusPoint(lat,lng)};
