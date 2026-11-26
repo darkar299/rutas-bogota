@@ -67,7 +67,7 @@ details{margin-top:8px;font-size:13px}summary{cursor:pointer;font-weight:600}
 #modes button{min-width:0;padding:8px 4px;font-size:13px}
 .transit-sort{display:flex;align-items:center;gap:8px;padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;margin:7px 0 10px}.transit-sort label{font-size:12px;color:#475569;font-weight:700;white-space:nowrap}.transit-sort select{font-size:13px;padding:8px;background:#fff}.transit-schedule{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 8px}.transit-schedule #ttime{grid-column:1/-1;justify-self:end;min-width:112px;padding:7px;font-size:14px}.transitplace{padding:10px;background:#fff;border:1px solid #e2e8f0;border-radius:13px;margin:10px 0}.transitplace h3{font-size:13px;line-height:1.35;margin:0 0 7px;color:#334155}.toption{display:block;width:100%;text-align:left;border:1px solid #dbe3ed;background:#fff;padding:10px;border-radius:11px;margin:7px 0;color:#1f2937;cursor:pointer;transition:background .15s,border-color .15s}.toption:hover{border-color:#93c5fd;background:#f8fbff}.toption.chosen{border:2px solid #2563eb;background:#eff6ff;box-shadow:0 1px 4px #2563eb18}.toptop{display:flex;justify-content:space-between;gap:8px;font-size:13px;align-items:center}.topname{min-width:0}.topbadge{color:#1d4ed8;background:#dbeafe;border-radius:20px;padding:3px 8px;font-size:11px;white-space:nowrap}.transitmetrics{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.transitmetric{font-size:11px;color:#475569;background:#f1f5f9;border-radius:20px;padding:4px 7px;white-space:nowrap}.toptxt{display:block;font-size:12px;color:#475569;margin-top:6px;line-height:1.4}.tmExternal{display:inline-block;margin:6px 0;color:#1d4ed8;font-size:13px;font-weight:600;text-decoration:none}
 
-/* Rutas — visual refresh v1.2.0 */
+/* Rutas — visual refresh v1.3.0 */
 :root{--ink:#172b3a;--muted:#718096;--line:#e5ebef;--soft:#f4f7f8;--brand:#087f8c;--brand-dark:#066a74;--paper:#fff;--shadow:0 14px 38px rgba(24,45,58,.17)}
 body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#edf2f3}
 #map{background:#e9efed}
@@ -120,6 +120,8 @@ body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-ser
  #panel.min{left:10px;right:auto;bottom:12px;top:auto;width:230px;max-width:calc(100vw - 20px);border-radius:16px}#panel.min #hd{padding:10px 12px}
  #ctr{right:14px;top:14px;bottom:auto;width:44px;height:44px}
 }
+
+#roadOptions{margin-top:10px}.roadhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 1px 7px}.roadorder{display:flex;align-items:center;gap:6px;color:#73848b;font-size:10px}.roadorder select{padding:6px 8px!important;font-size:11px!important;border-radius:9px!important}.roadlist{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}.roadoption{width:100%;text-align:left;padding:10px 12px;border:1px solid #e6ecee;border-radius:13px;background:#fff;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}.roadoption:hover{border-color:#b9d5d5;background:#fbfefe}.roadoption.selected{border-color:#70b9bb;background:#f0f8f7;box-shadow:inset 0 0 0 1px rgba(8,127,140,.08)}.roadoptiontop{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}.roadselected{color:var(--brand-dark);font-size:10px;font-weight:700}.roadchoose{font-size:10px;color:#829198}.roadmetrics{display:flex;gap:12px;margin-top:6px;color:#4d626a;font-size:11px}.roadnote{margin:7px 2px 0;color:#809097;font-size:10px;line-height:1.4}
 @media(min-width:701px){#ctr{right:22px;top:16px;bottom:auto}}
 #panel.min~#ctr{top:14px;bottom:auto}
 .leaflet-top.leaflet-right{top:68px;right:5px}
@@ -127,7 +129,7 @@ body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-ser
 <div id="map"></div>
 <div id="panel">
 <div id="hd">
- <div class="brand"><span class="brandmark" aria-hidden="true">↗</span><div class="brandtext"><div class="brandline"><h1>Rutas</h1><span id="version" title="Versión instalada">v1.2.0</span></div><p>Muévete mejor por Bogotá</p></div></div>
+ <div class="brand"><span class="brandmark" aria-hidden="true">↗</span><div class="brandtext"><div class="brandline"><h1>Rutas</h1><span id="version" title="Versión instalada">v1.3.0</span></div><p>Muévete mejor por Bogotá</p></div></div>
  <button id="tg" aria-label="Contraer panel" title="Contraer">⌄</button>
 </div>
 <div id="body">
@@ -143,7 +145,7 @@ body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-ser
  <ol id="stops"></ol>
  <div class="actionrow"><button class="btn p" id="go">Ver ruta</button><button class="btn locationbtn" id="loc"><span aria-hidden="true">◎</span> Mi ubicación</button></div>
  <button class="maplink" id="share">Abrir en Google Maps <span aria-hidden="true">↗</span></button>
- <div id="sum"></div><div id="transitInfo"></div><div id="risk"></div><div id="legs"></div>
+ <div id="sum"></div><div id="roadOptions"></div><div id="transitInfo"></div><div id="risk"></div><div id="legs"></div>
  <details id="dt" style="display:none"><summary>Indicaciones paso a paso</summary><ol id="steps"></ol></details>
  <details class="extratools"><summary>Más opciones</summary>
   <div class="optionrow"><label class="c"><input type="checkbox" id="opt" checked> Ordenar paradas para ahorrar tiempo</label></div>
@@ -184,7 +186,7 @@ function render(){
  save()}
 function moveStop(from,to){if(from<0||to<0||from>=stops.length||to>=stops.length||from===to)return;
  const [item]=stops.splice(from,1);stops.splice(to,0,item);$('opt').checked=false;save();clearRoute();render()}
-function clearRoute(){lastFitBounds=null;fitWatcherReady=false;fitRequest++;$('risk').style.display='none';$('transitInfo').innerHTML='';$('dt').style.display='none';if(transitLayer){transitLayer.remove();transitLayer=null}if(line){line.remove();line=null}routeStops=[];lastCoords=null;$('sum').style.display='none';$('legs').innerHTML=''}
+function clearRoute(){lastFitBounds=null;fitWatcherReady=false;fitRequest++;$('risk').style.display='none';$('transitInfo').innerHTML='';$('roadOptions').innerHTML='';$('dt').style.display='none';if(transitLayer){transitLayer.remove();transitLayer=null}if(line){line.remove();line=null}routeStops=[];lastCoords=null;alts=[];roadCurrentIndex=-1;$('sum').style.display='none';$('legs').innerHTML=''}
 function add(lat,lng,name){stops.push({lat,lng,name:name||`${lat.toFixed(4)}, ${lng.toFixed(4)}`});clearRoute();render()}
 map.on('click',async e=>{const {lat,lng}=e.latlng;add(lat,lng);
  try{const r=await(await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lng=${lng}&lon=${lng}`)).json();
@@ -326,11 +328,19 @@ function bestOrder(cost,round){
  }return order;
 }
 async function optimizeRoad(pts,round){const matrix=await roadMatrix(pts);return bestOrder(matrix,round).map(i=>pts[i])}
-let alts=[];
+let alts=[],roadSort='time',roadCurrentIndex=-1;
+function roadRouteOrder(){return alts.map((_,i)=>i).sort((a,b)=>roadSort==='distance'?alts[a].distance-alts[b].distance||alts[a].duration-alts[b].duration:alts[a].duration-alts[b].duration||alts[a].distance-alts[b].distance)}
+function renderRoadOptions(){
+ const el=$('roadOptions');if(!alts.length){el.innerHTML='';return}
+ const order=roadRouteOrder(),fastest=order.reduce((best,i)=>alts[i].duration<alts[best].duration?i:best,order[0]),shortest=order.reduce((best,i)=>alts[i].distance<alts[best].distance?i:best,order[0]);
+ let html=`<div class="roadhead"><span class="sectionlabel">RUTAS DISPONIBLES · ${alts.length}</span><label class="roadorder"><span>Ordenar</span><select id="roadSort" aria-label="Ordenar rutas"><option value="time" ${roadSort==='time'?'selected':''}>Menor tiempo</option><option value="distance" ${roadSort==='distance'?'selected':''}>Menor distancia</option></select></label></div>`;
+ html+=`<div class="roadlist">`+order.map((i,j)=>{const r=alts[i],badges=[];if(i===fastest)badges.push('Más rápida');if(i===shortest&&i!==fastest)badges.push('Más corta');return `<button type="button" class="roadoption ${i===roadCurrentIndex?'selected':''}" data-road="${i}" aria-pressed="${i===roadCurrentIndex}"><span class="roadoptiontop"><b>${badges[0]||`Alternativa ${j+1}`}</b>${i===roadCurrentIndex?'<span class="roadselected">En el mapa ✓</span>':'<span class="roadchoose">Ver ruta</span>'}</span><span class="roadmetrics"><span>⏱ ${mins(r.duration)}</span><span>↔ ${km(r.distance)}</span></span></button>`}).join('')+`</div><div class="roadnote">Duraciones aproximadas; no incluyen tráfico en vivo. El servicio muestra las rutas alternas que encuentra para este trayecto.</div>`;
+ el.innerHTML=html;const sel=$('roadSort');if(sel)sel.onchange=e=>{roadSort=e.target.value;renderRoadOptions()};el.querySelectorAll('[data-road]').forEach(btn=>btn.onclick=()=>showRt(Number(btn.dataset.road)));
+}
 function exposure(co){const tr=tiers($('rt').value);let sc=0,tot=0;
  for(let i=0;i<co.length-1;i++){const a=co[i],b=co[i+1],len=hav({lat:a[1],lng:a[0]},{lat:b[1],lng:b[0]});const k=locOf((a[0]+b[0])/2,(a[1]+b[1])/2);sc+=len*(k>=0?tr[k]+1:1);tot+=len}
  return tot?sc/tot:0}
-function showRt(k){const rt=alts[k];
+function showRt(k){const rt=alts[k];roadCurrentIndex=k;
  if(line)line.remove();line=L.featureGroup().addTo(map);
  const bounds=[];
  rt.legs.forEach((leg,i)=>{
@@ -344,16 +354,17 @@ function showRt(k){const rt=alts[k];
    .bindPopup(`<b>Tramo ${i+1}</b><br>${routeStops[i]?.name||'Parada '+(i+1)} → ${routeStops[i+1]?.name||'Parada '+(i+2)}<br>${km(leg.distance)} · ${mins(leg.duration)}`).addTo(line);
  });
  const routeBounds=line.getBounds();routeStops.forEach(p=>routeBounds.extend([p.lat,p.lng]));fitBoundsClear(routeBounds);
- $('sum').innerHTML=`<b>${km(rt.distance)}</b> · <b>${mins(rt.duration)}</b> · ${stops.length} paradas`+(k?' · <b>alternativa con menor exposición estimada</b>':'')+(optimizationNote?`<div style="font-size:12px;margin-top:4px;color:#475569">${optimizationNote}</div>`:'');
+ $('sum').innerHTML=`<b>${km(rt.distance)}</b> · <b>${mins(rt.duration)}</b> · ${stops.length} paradas`+(optimizationNote?`<div style="font-size:12px;margin-top:4px;color:#475569">${optimizationNote}</div>`:'');renderRoadOptions();
  $('steps').innerHTML=rt.legs.flatMap((l,i)=>[`<li><b>— Tramo ${i+1}: ${routeStops[i]?.name||'Parada '+(i+1)} → ${routeStops[i+1]?.name||'Parada '+(i+2)} —</b></li>`,...l.steps.filter(x=>x.distance>0||x.maneuver.type=='arrive').map(x=>`<li>${stepText(x)}${x.distance?' ('+(x.distance>=1000?km(x.distance):Math.round(x.distance)+' m')+')':''}</li>`)]).join('');$('dt').style.display='block';
  $('legs').innerHTML='<div class="leghelp">Los números sobre el mapa identifican cada tramo. Toca uno para ver sus paradas.</div>'+rt.legs.map((l,i)=>{const a=routeStops[i],b=routeStops[i+1],ret=$('round').checked&&i===rt.legs.length-1;return `<div class="legrow" data-leg="${i}"><span class="legsw" style="background:${legColors[i%legColors.length]}"></span><span class="legname"><div class="legpair">${i+1}. ${a?.name||'Parada '+(i+1)} → ${ret?'1. '+(b?.name||'Salida')+' (regreso)':(i+2)+'. '+(b?.name||'Parada '+(i+2))}</div><div class="legmeta">${km(l.distance)} · ${mins(l.duration)}</div></span></div>`}).join('');
  $('legs').querySelectorAll('.legrow').forEach(row=>row.onclick=()=>{const b=bounds[+row.dataset.leg];if(b)fitBoundsClear(b,20)});
  riskSummary(rt.geometry.coordinates);
- if($('rz').checked&&alts.length>1){const base=exposure(alts[0].geometry.coordinates);
-  let best=-1,bs=base;alts.forEach((x,i)=>{if(i&&x.duration<=alts[0].duration*1.3){const e=exposure(x.geometry.coordinates);if(e<bs-0.05){bs=e;best=i}}});
+ if($('rz').checked&&alts.length>1){const fastest=alts.reduce((best,x,i)=>x.duration<alts[best].duration?i:best,0),base=exposure(alts[fastest].geometry.coordinates);
+  let best=-1,bs=base;alts.forEach((x,i)=>{if(i!==fastest&&x.duration<=alts[fastest].duration*1.3){const e=exposure(x.geometry.coordinates);if(e<bs-0.05){bs=e;best=i}}});
   const d=$('risk');
-  if(k==0&&best>0){const x=alts[best];d.innerHTML+=`<button class="btn s" id="safe" style="margin-top:8px;width:100%">🟢 Ver alternativa (${mins(x.duration)}, ${km(x.distance)}; ${Math.round((1-bs/base)*100)}% menor indicador por localidad)</button>`;$('safe').onclick=()=>showRt(best)}
-  else if(k>0){d.innerHTML+=`<button class="btn s" id="fast" style="margin-top:8px;width:100%">🔵 Volver a la ruta más rápida</button>`;$('fast').onclick=()=>showRt(0)}}}
+  if(k===fastest&&best>=0){const x=alts[best];d.innerHTML+=`<button class="btn s" id="safe" style="margin-top:8px;width:100%">🟢 Ver alternativa (${mins(x.duration)}, ${km(x.distance)}; ${Math.round((1-bs/base)*100)}% menor indicador por localidad)</button>`;$('safe').onclick=()=>showRt(best)}
+  else if(k!==fastest){d.innerHTML+=`<button class="btn s" id="fast" style="margin-top:8px;width:100%">🔵 Volver a la ruta más rápida</button>`;$('fast').onclick=()=>showRt(fastest)}}}
+
 const TM_GIS={source:'TRANSMILENIO S.A. · GTFS estático 2026-10-13'};
 const TM_CELL=.004,TM_X=111320*Math.cos(4.65*Math.PI/180),TM_Y=110540;
 let tmStops=[],tmGrid={},tmMembership=[],tmPaths={},tmDataPromise=null,transitResults=[],transitChoices=[],transitSort='transfers',transitModeFilter='all',transitTimeMode='none',transitTimeValue='';
@@ -685,7 +696,7 @@ async function go(){
   const url=`https://routing.openstreetmap.de/${profile}/route/v1/driving/${coords}?overview=full&geometries=geojson&steps=true&alternatives=true`;
   const resp=await fetch(url);if(!resp.ok)throw Error(`El servicio de rutas respondió ${resp.status}`);
   const result=await resp.json();if(result.code!=='Ok'||!result.routes?.length)throw Error(result.message||'No se encontró una ruta por carretera entre esos puntos');
-  alts=result.routes;showRt(0);
+  alts=result.routes;showRt(roadRouteOrder()[0]);
  }catch(err){console.error('Route calculation failed:',err);$('sum').style.display='block';$('sum').textContent='No pude calcular esta ruta. Revisa que los puntos sean accesibles por el modo elegido e inténtalo de nuevo.';$('legs').innerHTML='';}
  finally{button.disabled=false;button.textContent=original}
 }
